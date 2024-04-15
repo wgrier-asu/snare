@@ -1,0 +1,2 @@
+- train.model=single_cls
+- train.aggregator.type=maxpool

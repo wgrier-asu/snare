@@ -5,7 +5,7 @@ hydra:
     dir: ${root_dir}/${train.exps_folder}/
     subdir: ${train.folder}
 
-root_dir: <rootdir>
+root_dir: /Users/willemgrier/Documents/snare
 
 tag: default
 seed: 0

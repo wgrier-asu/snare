@@ -1,0 +1,51 @@
+root_dir: /Users/willemgrier/Documents/snare
+tag: default
+seed: 0
+debug: false
+wandb:
+  logger:
+    entity: snare
+    project: snare
+    tags: []
+    offline: false
+    run_name: ${train.run_name}
+  saver:
+    upload: false
+    monitor: val_acc
+data:
+  fast_epoch: false
+  amt_data: ${root_dir}/amt/
+  folds: folds_adversarial
+  clip_lang_feats: ${root_dir}/data/langfeat-512-clipViT32.json.gz
+  clip_img_feats: ${root_dir}/data/shapenet-clipViT32-frames.json.gz
+train:
+  exps_folder: exps
+  folder: ${train.feats_backbone}-${train.model}-${train.run_name}
+  run_name: ${train.aggregator.type}
+  pretrained_model: ''
+  model: zero_shot_cls
+  random_seed: 42
+  log: false
+  lr: 0.001
+  batch_size: 64
+  max_epochs: 50
+  load_from_last_ckpt: false
+  dropout: 0.1
+  normalize_feats: true
+  pretrained_checkpoint: ''
+  fc_projection_type: fc
+  feats_backbone: clip
+  aggregator:
+    type: maxpool
+    index: 0
+  rotator:
+    teacher_force: true
+    pretrained_cls: ${root_dir}/exp_may06/clip-single_cls-random_index/checkpoints/epoch=0041-val_acc=0.80161.ckpt
+    estimate_init_state: true
+    estimate_final_state: true
+  loss:
+    est_weight: 1.0
+    rot_weight: 1.0
+    cls_weight: 0.2
+val:
+  adversarial_init_view: false
