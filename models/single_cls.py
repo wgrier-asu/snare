@@ -27,6 +27,9 @@ class SingleClassifier(LightningModule):
         self.feats_backbone = self.cfg['train']['feats_backbone']
         self.img_feat_dim = 512
         self.lang_feat_dim = 512
+        if self.feats_backbone == 'blip':
+            self.img_feat_dim = 768
+            self.lang_feat_dim = 768
         self.num_views = 8
 
         # choose aggregation method

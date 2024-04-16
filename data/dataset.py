@@ -53,6 +53,15 @@ class CLIPGraspingDataset(torch.utils.data.Dataset):
             img_feats_path = self.cfg['data']['clip_img_feats']
             with gzip.open(img_feats_path, 'r') as f:
                 self.img_feats = json.load(f)
+
+        if self.feats_backbone == "blip":
+            lang_feats_path = self.cfg['data']['blip_lang_feats']
+            with gzip.open(lang_feats_path, 'r') as f:
+                self.lang_feats = json.load(f)
+
+            img_feats_path = self.cfg['data']['blip_img_feats']
+            with gzip.open(img_feats_path, 'r') as f:
+                self.img_feats = json.load(f)
         else:
             raise NotImplementedError()
 

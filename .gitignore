@@ -1,2 +1,3 @@
 data/shapenet-images/screenshots
 data/*.json
+data/*.gz
